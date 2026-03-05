@@ -4,16 +4,18 @@ interface class RealizarEntrega{
 
 
 
-abstract class Transporte{
+abstract class Transporte implements RealizarEntrega{
   String _marca;
   
   Transporte({required String marca}) : _marca = marca;
   
   String get marca => _marca;
   
+  void entregar();
+
 }
 
-class Avion extends Transporte implements RealizarEntrega{
+class Avion extends Transporte{
   Avion({required String marca}) : super(marca: marca);
   
   @override
@@ -24,7 +26,7 @@ class Avion extends Transporte implements RealizarEntrega{
   
 }
 
-class Camion extends Transporte implements RealizarEntrega{
+class Camion extends Transporte{
   Camion({required String marca}) : super(marca: marca);
   
   @override
@@ -35,8 +37,8 @@ class Camion extends Transporte implements RealizarEntrega{
 
 
 void main(){
-  final avionHercules = Avion(marca: "Loocked Martin");
-  final camion1 = Camion(marca: "Lotus");
+  Transporte avionHercules = Avion(marca: "Loocked Martin");
+  Transporte camion1 = Camion(marca: "Lotus");
   
   avionHercules.entregar();
   camion1.entregar();
